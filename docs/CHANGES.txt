@@ -4,6 +4,9 @@ Changelog
 2.4.20 (unreleased)
 -------------------
 
+- Depend on Products.ATContentTypes
+  [ale-rt]
+
 - Do not use portal_interface tool but @@plone_interface_info (PLIP #13770).
   [ale-rt]
 

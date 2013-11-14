@@ -51,7 +51,7 @@ setup(name='archetypes.referencebrowserwidget',
       install_requires=[
           'setuptools',
 #          'DateTime',
-#          'Products.Archetypes',
+          'Products.ATContentTypes',
           'zope.interface',
           'zope.component',
           'zope.formlib',
