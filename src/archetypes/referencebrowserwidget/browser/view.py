@@ -7,6 +7,7 @@ import zope.interface
 
 from zope.component import getAdapter
 from zope.component import getMultiAdapter, queryMultiAdapter
+from zope.component import getUtility
 from zope.i18nmessageid import MessageFactory
 from zope.formlib import namedtemplate
 
@@ -26,6 +27,7 @@ except ImportError:
 from Products.ZCTextIndex.ParseTree import ParseError
 
 from plone.app.form._named import named_template_adapter
+from plone.registry.interfaces import IRegistry
 
 from Products.Archetypes.config import REFERENCE_CATALOG
 from Products.CMFCore.utils import getToolByName
@@ -417,10 +419,9 @@ class ReferenceBrowserPopup(BrowserView):
         return getattr(item, 'Title', '') or getattr(item, 'getId', '')
 
     def preview_url(self, item):
-        portal_properties = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_tools').properties()
-        site_properties = portal_properties.site_properties
-        types_use_view = site_properties.typesUseViewActionInListings
+        registry = getUtility(IRegistry)
+        types_use_view = registry.get(
+            'plone.types_use_view_action_in_listings')
         if item.portal_type in types_use_view:
             return item.getURL() + '/view'
         return item.getURL()

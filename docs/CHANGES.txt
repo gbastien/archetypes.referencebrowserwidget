@@ -1,8 +1,14 @@
 Changelog
 =========
 
+
+
 2.5.4 (unreleased)
 ------------------
+
+- typesUseViewActionInListings moved to registry as
+  types_use_view_action_in_listings.
+  [pbauer]
 
 - saner check for isNotSelf(), which was throwing KeyError
   [alecpm, tkimnguyen]

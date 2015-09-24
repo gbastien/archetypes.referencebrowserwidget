@@ -315,10 +315,9 @@ class PopupTestCase(PopupBaseTestCase):
         catalog = getToolByName(self.portal, 'portal_catalog')
         brain = catalog(id='ref')[0]
         assert popup.preview_url(brain) == brain.getURL()
-
+        registry = self.portal.portal_registry
         # now testing what URL is get for content's where "/view" if forced
-        site_properties = self.portal.portal_properties.site_properties
-        site_properties.typesUseViewActionInListings = ('RefBrowserDemo',)
+        registry['plone.types_use_view_action_in_listings'] = ['RefBrowserDemo']
         assert popup.preview_url(brain) == brain.getURL() + '/view'
 
     def test_at_url(self):
